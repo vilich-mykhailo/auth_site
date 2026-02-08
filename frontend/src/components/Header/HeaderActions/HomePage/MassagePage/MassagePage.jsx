@@ -1,19 +1,18 @@
-/* MassagePage.jsx */
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import LoginModal from "../../LoginModal/LoginModal";
 import { useParams } from "react-router-dom";
-import { useFavourites } from "../../../../../context/FavouritesContext";
 
 import "./MassagePage.css";
-
 import { TABS, DATA } from "../../../../../data/massageData";
+import ReserveModal from "../../../../ReserveModal/ReserveModal";
+import SuccessModal from "../../../../SuccessModal/SuccessModal";
 
-/* ===== COMPONENT ===== */
 const MassagePage = () => {
   const { type } = useParams();
   const [activeTab, setActiveTab] = useState("all");
-  const [isLoginOpen, setLoginOpen] = useState(false); // 🔥
+  const [isReserveOpen, setReserveOpen] = useState(false);
+  const [selectedMassage, setSelectedMassage] = useState(null);
+  const [isSuccessOpen, setSuccessOpen] = useState(false);
+
 
   useEffect(() => {
     if (type && DATA[type]) {
@@ -22,68 +21,75 @@ const MassagePage = () => {
       setActiveTab("all");
     }
   }, [type]);
-  const { toggleFavourite, isFavourite } = useFavourites();
 
   return (
-    <>
-      <section className="massage-page page">
-        <h2 className="massage-title">
-          Від візиту вас відокремлює лише один крок —
-          <br /> кнопка записатися!
-        </h2>
+    <section className="massage-page page">
+      <h2 className="massage-title">
+        Від візиту вас відокремлює лише один крок —
+        <br /> кнопка записатися!
+      </h2>
 
-        {/* Tabs */}
-        <div className="massage-tabs">
-          {TABS.map((tab) => (
-            <button
-              key={tab.id}
-              className={`massage-tab ${activeTab === tab.id ? "active" : ""}`}
-              onClick={() => setActiveTab(tab.id)}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
+      {/* Tabs */}
+      <div className="massage-tabs">
+        {TABS.map((tab) => (
+          <button
+            key={tab.id}
+            className={`massage-tab ${activeTab === tab.id ? "active" : ""}`}
+            onClick={() => setActiveTab(tab.id)}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
 
-        {/* List */}
-        <div className="massage-list">
-          {DATA[activeTab].map((item, index) => (
-            <div key={index} className="massage-card">
-              <div className="massage-info">
-                <h3>{item.title}</h3>
-                <span className="price">{item.price}</span>
-                <p>{item.desc}</p>
+      {/* List */}
+      <div className="massage-list">
+        {DATA[activeTab].map((item, index) => (
+          <div key={index} className="massage-card">
+            <div className="massage-info">
+              <h3>{item.title}</h3>
+              <span className="price">{item.price}</span>
+              <p>{item.desc}</p>
 
-                <div className="tags">
-                  <button
-                    className={`fav-btn ${isFavourite(item.title) ? "active" : ""}`}
-                    onClick={() => toggleFavourite(item)}
-                    aria-label="Add to favourites"
-                  >
-                    ❤
-                  </button>
-
-                  {item.tags.map((tag) => (
-                    <span key={tag} className="tag">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+              <div className="tags">
+                {item.tags.map((tag) => (
+                  <span key={tag} className="tag">
+                    {tag}
+                  </span>
+                ))}
               </div>
-
-              <button
-                type="button"
-                className="reserve-btn"
-                onClick={() => setLoginOpen(true)}
-              >
-                ЗАРЕЗЕРВУВАТИ
-              </button>
             </div>
-          ))}
-        </div>
-      </section>
-      <LoginModal isOpen={isLoginOpen} onClose={() => setLoginOpen(false)} />
-    </>
+
+            <button
+              type="button"
+              className="reserve-btn"
+              onClick={() => {
+                setSelectedMassage(item);
+                setReserveOpen(true);
+              }}
+            >
+              ЗАРЕЗЕРВУВАТИ
+            </button>
+          </div>
+        ))}
+      </div>
+
+{isReserveOpen && (
+  <ReserveModal
+    massage={selectedMassage}
+    onClose={() => setReserveOpen(false)}
+    onSuccess={() => {
+      setReserveOpen(false);
+      setSuccessOpen(true);
+    }}
+  />
+)}
+
+{isSuccessOpen && (
+  <SuccessModal onClose={() => setSuccessOpen(false)} />
+)}
+
+    </section>
   );
 };
 

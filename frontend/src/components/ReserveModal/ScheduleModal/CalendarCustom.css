@@ -1,0 +1,103 @@
+/* =========================
+   CALENDAR BASE
+========================= */
+
+.calendar {
+  color: #ffffff;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+/* Назва місяця */
+.calendar .rdp-caption_label {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Дні тижня */
+.calendar .rdp-head_cell {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* =========================
+   DAYS
+========================= */
+
+/* Кнопка дня */
+.calendar .rdp-day_button {
+  color: #ffffff;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+/* Hover (НЕ для selected / disabled) */
+.calendar
+  .rdp-day_button:hover:not(:disabled):not([aria-pressed="true"]) {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Сьогодні */
+.calendar .rdp-day_today .rdp-day_button {
+  border: 1px solid #6aa84f;
+}
+
+/* ВИБРАНИЙ ДЕНЬ (єдине джерело стилю) */
+.calendar .rdp-day_selected .rdp-day_button {
+  background-color: #6aa84f;
+  color: #0b0f0c;
+}
+
+/* Disabled */
+.calendar .rdp-day_disabled .rdp-day_button {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+/* =========================
+   FOCUS (прибираємо з UI)
+========================= */
+
+/* ЗЕЛЕНИЙ бордер при фокусі (замість синього) */
+.calendar .rdp-day_button:focus,
+.calendar .rdp-day_button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px #6aa84f;
+}
+
+/* =========================
+   NAVIGATION (ARROWS)
+========================= */
+
+/* Кнопки */
+.calendar .rdp-button_previous,
+.calendar .rdp-button_next {
+    border-radius: 50px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+/* SVG стрілки */
+.calendar .rdp-button_previous svg polygon,
+.calendar .rdp-button_next svg polygon {
+  fill: #ffffff;
+}
+
+/* Hover стрілок */
+.calendar .rdp-button_previous:hover,
+.calendar .rdp-button_next:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: scale(1.03);
+}
+
+.calendar .rdp-day_selected .rdp-day_button:focus,
+.calendar .rdp-day_selected .rdp-day_button:focus-visible {
+  box-shadow: none;
+}
+
+.calendar .rdp-day_disabled .rdp-day_button {
+  color: rgba(255, 255, 255, 0.25);
+  cursor: not-allowed;
+}

@@ -1,23 +1,23 @@
-// src/components/SuccessModal/SuccessModal.jsx
-import { useNavigate } from "react-router-dom";
+import { createPortal } from "react-dom";
 import "./SuccessModal.css";
 
-const SuccessModal = ({ name }) => {
-  const navigate = useNavigate();
+const SuccessModal = ({ onClose }) => {
+  return createPortal(
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-card success" onClick={(e) => e.stopPropagation()}>
+        <h2 className="modal-title">Готово 💚</h2>
 
-  return (
-    <div className="success-screen">
-      <div className="success-card">
-        <h2 className="success-title">Майже готово 🚀</h2>
-        <div className="success-info">
-          <p>{name}, перевірте пошту 📩</p>
-          <p>Ми надіслали лист для активації акаунту.</p>
-          <p className="success-hint">
-            Якщо листа немає — перевірте папку <b>«Спам»</b>.
-          </p>
-        </div>
+        <p className="success-text">
+          Ви успішно записались!  
+          Ми звʼяжемось з вами найближчим часом.
+        </p>
+
+        <button className="modal-submit" onClick={onClose}>
+          Закрити
+        </button>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 
