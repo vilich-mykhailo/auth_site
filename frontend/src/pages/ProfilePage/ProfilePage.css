@@ -1,0 +1,857 @@
+/* ================================
+   ROOT / VARIABLES
+================================ */
+:root {
+  --green-main: #9bcf6a;
+  --green-soft: rgba(155, 207, 106, 0.35);
+
+  --bg-main: #0e0f0d;
+  --bg-card: rgba(20, 22, 20, 0.75);
+
+  --border-soft: rgba(155, 207, 106, 0.25);
+
+  --text-main: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.6);
+  --text-dim: rgba(255, 255, 255, 0.4);
+
+  --error: #ef4444;
+}
+
+/* ================================
+   PAGE
+================================ */
+.profile-section {
+
+  background: var(--bg-main);
+  padding: 40px 0 80px;
+  font-family: "Jost", sans-serif;
+    min-height: 100vh;
+  background: #0e0f0d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 32px;
+}
+
+/* ================================
+   CARD (GLASS)
+================================ */
+.profile-card {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.04),
+    rgba(0, 0, 0, 0.6)
+  );
+  border-radius: 24px;
+  padding: 32px 32px 36px;
+
+  border: 1px solid var(--border-soft);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+
+  animation: fadeUp 0.5s ease both;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================================
+   TITLES
+================================ */
+.profile-title {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 28px;
+  text-align: center;
+  color: var(--text-main);
+}
+
+/* ================================
+   FORM
+================================ */
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.profile-field {
+  position: relative;
+  width: 100%;
+}
+
+/* ================================
+   INPUTS
+================================ */
+.profile-form input {
+  width: 100%;
+  height: 48px;
+  border-radius: 14px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.35);
+
+  padding: 0 14px 0 42px;
+  font-size: 14px;
+  color: var(--text-main);
+
+  transition: all 0.25s ease;
+}
+
+.profile-form input::placeholder {
+  color: var(--text-dim);
+}
+
+.profile-form input:focus {
+  outline: none;
+  border-color: var(--green-main);
+  box-shadow: 0 0 0 3px rgba(155, 207, 106, 0.15);
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.profile-form input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ================================
+   ICONS
+================================ */
+.profile-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.profile-icon svg {
+  stroke: var(--green-main);
+  filter: drop-shadow(0 0 6px rgba(155, 207, 106, 0.35));
+}
+
+/* ================================
+   ERRORS
+================================ */
+.input-error {
+  border-color: var(--error) !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+}
+
+.date-error-text,
+.registration-error {
+  font-size: 12px;
+  color: var(--error);
+  margin-top: 4px;
+}
+
+/* ================================
+   CUSTOM SELECT
+================================ */
+.custom-select {
+  position: relative;
+}
+
+.select-display {
+  height: 48px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.35);
+
+  padding: 0 42px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-size: 14px;
+  color: var(--text-main);
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+.select-display.open {
+  border-color: var(--green-main);
+}
+
+.custom-arrow {
+  font-size: 18px;
+  color: var(--text-muted);
+  transition: transform 0.25s ease;
+}
+
+.select-display.open .custom-arrow {
+  transform: rotate(180deg);
+  color: var(--green-main);
+}
+
+.select-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+
+  background: #0f120f;
+  border-radius: 16px;
+  border: 1px solid var(--border-soft);
+
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+  padding: 6px;
+
+  z-index: 50;
+}
+
+.select-option {
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--text-main);
+  transition: all 0.2s ease;
+}
+
+.select-option:hover {
+  background: rgba(155, 207, 106, 0.12);
+  color: var(--green-main);
+  transform: translateX(4px);
+}
+
+/* ================================
+   SAVE BUTTON
+================================ */
+.profile-btn {
+  margin-top: 22px;
+  height: 52px;
+  border-radius: 999px;
+
+  background: linear-gradient(135deg, #a6d977, #8bbf5d);
+  color: #111;
+
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+.profile-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 40px rgba(155, 207, 106, 0.45);
+}
+
+.profile-btn.disabled {
+  background: #3a3a3a;
+  color: #777;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* ================================
+   RIGHT COLUMN
+================================ */
+.profile-right {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ================================
+   SECURITY
+================================ */
+.security-card {
+  padding: 24px;
+}
+
+.security-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.security-item:hover {
+  background: rgba(155, 207, 106, 0.08);
+  transform: translateX(6px);
+}
+
+.security-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.security-subtitle {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.security-arrow {
+  color: var(--text-muted);
+  font-size: 20px;
+}
+
+/* ================================
+   SUCCESS TOAST
+================================ */
+.success-toast {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 14px 18px;
+
+  background: rgba(15, 18, 15, 0.85);
+  backdrop-filter: blur(14px);
+
+  border-radius: 14px;
+  border: 1px solid rgba(155, 207, 106, 0.3);
+
+  color: #eafff1;
+  font-size: 14px;
+  font-weight: 500;
+
+  animation:
+    toastIn 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    toastOut 0.35s ease 2.8s forwards;
+}
+
+.toast-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+
+  background: linear-gradient(135deg, #3cff9e, #22c55e);
+  color: #052e1b;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes toastOut {
+  to {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+}
+
+/* контейнер іконок */
+.security-toggle-icon {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* базові стилі для обох ікон */
+.security-toggle-icon .icon {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 22px;
+  line-height: 1;
+
+  opacity: 0;
+  transform: scale(0.85) rotate(-8deg);
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 🔒 за замовчуванням */
+.security-toggle-icon .closed {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+/* 🔓 прихована */
+.security-toggle-icon .open {
+  opacity: 0;
+}
+
+/* =========================
+   HOVER — ПЕРЕМИКАННЯ
+========================= */
+.security-item:hover .security-toggle-icon .closed {
+  opacity: 0;
+  transform: scale(0.7) rotate(-12deg);
+}
+
+.security-item:hover .security-toggle-icon .open {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+
+/* ===============================
+   SECURITY — PASSWORD FORM
+=============================== */
+
+.security-reset-form {
+  width: 100%;
+  max-width: 420px;
+    background: #0f120d;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ===============================
+   FIELD WRAPPER
+=============================== */
+
+.security-password-field {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* ===============================
+   INPUT
+=============================== */
+
+.security-password-field input {
+  width: 100%;
+  height: 52px;
+
+  padding: 0 52px 0 18px;
+
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(155, 207, 106, 0.25);
+  border-radius: 14px;
+
+  font-family: "Jost", sans-serif;
+  font-size: 14px;
+  color: #ffffff;
+
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+.security-password-field input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* focus */
+.security-password-field input:focus {
+  outline: none;
+  border-color: #9bcf6a;
+  box-shadow:
+    0 0 0 1px rgba(155, 207, 106, 0.35),
+    0 12px 28px rgba(155, 207, 106, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* error */
+.security-password-field input.input-error {
+  border-color: rgba(239, 68, 68, 0.8);
+  box-shadow:
+    0 0 0 1px rgba(239, 68, 68, 0.4),
+    0 10px 26px rgba(239, 68, 68, 0.2);
+}
+
+/* ===============================
+   TOGGLE PASSWORD BUTTON
+=============================== */
+
+.security-toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 36px;
+  height: 36px;
+
+  border-radius: 12px;
+  border: none;
+
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.75);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.security-toggle-password svg {
+  width: 20px;
+  height: 20px;
+
+  transition:
+    transform 0.35s ease,
+    opacity 0.35s ease;
+}
+
+/* hover */
+.security-toggle-password:hover {
+  background: rgba(155, 207, 106, 0.15);
+  color: #9bcf6a;
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 6px 18px rgba(155, 207, 106, 0.25);
+}
+
+/* active */
+.security-toggle-password:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+/* ===============================
+   PASSWORD RULES
+=============================== */
+
+.security-reset-password-hints {
+  margin-top: 6px;
+}
+
+.security-password-hints {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(155, 207, 106, 0.2);
+  border-radius: 16px;
+
+  padding: 16px 18px;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+}
+
+.security-password-hints p {
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 4px 0;
+
+  color: rgba(255, 255, 255, 0.6);
+  transition: color 0.25s ease;
+}
+
+.security-password-hints p.ok {
+  color: #9bcf6a;
+}
+
+.security-password-hints p.error {
+  color: #ef4444;
+}
+
+/* ===============================
+   ERROR TEXT
+=============================== */
+
+.registration-error {
+  font-size: 13px;
+  color: #ef4444;
+  margin-top: 4px;
+
+  animation: errorFade 0.3s ease;
+}
+
+@keyframes errorFade {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===============================
+   SUBMIT BUTTON
+=============================== */
+
+.security-password-submit-btn {
+  margin-top: 18px;
+
+  height: 54px;
+  width: 100%;
+
+  border-radius: 16px;
+  border: none;
+
+  font-family: "Jost", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+
+  color: #0e0f0d;
+  background: linear-gradient(135deg, #9bcf6a, #b8e18b);
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+/* hover */
+.security-password-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(155, 207, 106, 0.35);
+}
+
+/* active */
+.security-password-submit-btn:active {
+  transform: translateY(0) scale(0.97);
+}
+
+/* disabled */
+.security-password-submit-btn:disabled {
+  background: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.4);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+
+/* ===============================
+   EMAIL CHANGE — WRAPPER
+=============================== */
+
+.security-email-reset-form {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ===============================
+   EMAIL FIELD
+=============================== */
+
+.security-email-password-field {
+  position: relative;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+}
+
+/* ===============================
+   INPUT
+=============================== */
+
+.security-email-password-field input {
+  width: 100%;
+  height: 52px;
+
+  padding: 0 52px 0 18px;
+
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(155, 207, 106, 0.25);
+  border-radius: 14px;
+
+  font-family: "Jost", sans-serif;
+  font-size: 14px;
+  color: #ffffff;
+
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+.security-email-password-field input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* focus */
+.security-email-password-field input:focus {
+  outline: none;
+  border-color: #9bcf6a;
+  box-shadow:
+    0 0 0 1px rgba(155, 207, 106, 0.35),
+    0 12px 28px rgba(155, 207, 106, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* error */
+.security-email-password-field input.input-error {
+  border-color: rgba(239, 68, 68, 0.85);
+  box-shadow:
+    0 0 0 1px rgba(239, 68, 68, 0.4),
+    0 10px 26px rgba(239, 68, 68, 0.2);
+}
+
+/* ===============================
+   TOGGLE PASSWORD (EYE)
+=============================== */
+
+.security-email-password-field .security-toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 36px;
+  height: 36px;
+
+  border-radius: 12px;
+  border: none;
+
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.75);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.security-email-password-field .security-toggle-password svg {
+  width: 20px;
+  height: 20px;
+
+  transition:
+    transform 0.35s ease,
+    opacity 0.35s ease;
+}
+
+/* hover */
+.security-email-password-field .security-toggle-password:hover {
+  background: rgba(155, 207, 106, 0.15);
+  color: #9bcf6a;
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 6px 18px rgba(155, 207, 106, 0.25);
+}
+
+/* active */
+.security-email-password-field .security-toggle-password:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+/* ===============================
+   ERROR TEXT
+=============================== */
+
+.registration-error {
+  font-size: 13px;
+  color: #ef4444;
+  margin-top: 4px;
+
+  animation: errorFade 0.3s ease;
+}
+
+/* reuse */
+@keyframes errorFade {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===============================
+   SUBMIT BUTTON
+=============================== */
+
+.security-email-submit-btn {
+  margin-top: 18px;
+
+  height: 54px;
+  width: 100%;
+
+  border-radius: 16px;
+  border: none;
+
+  font-family: "Jost", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+
+  color: #0e0f0d;
+  background: linear-gradient(135deg, #9bcf6a, #b8e18b);
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+/* hover */
+.security-email-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(155, 207, 106, 0.35);
+}
+
+/* active */
+.security-email-submit-btn:active {
+  transform: translateY(0) scale(0.97);
+}
+
+/* disabled */
+.security-email-submit-btn:disabled {
+  background: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.4);
+  cursor: not-allowed;
+  box-shadow: none;
+}

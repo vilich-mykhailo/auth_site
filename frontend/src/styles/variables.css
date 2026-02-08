@@ -1,0 +1,81 @@
+:root {
+  /* ===== COLORS ===== */
+  --color-primary: #1f2937;
+  --color-primary-hover: #35eb25;
+  --color-primary-gradient: linear-gradient(90deg, #2563eb, #7c3aed);
+  --color-primary-bottom-gradient: linear-gradient(135deg, #002fff, #ff0000);
+  --color-secondary: #7c3aed;
+
+  --color-text-main: #1f2937;
+  --color-text-secondary: #374151;
+  --color-text-tertiary: #6b7280;
+
+
+
+
+
+
+
+
+  --color-error: #ef4444;
+  --color-good: #22c55e;
+  
+    --color-bg-header: #ffffff;
+    --color-box-shadow-hover: 0 8px 24px rgba(37, 99, 235, 0.35);
+    --color-box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+
+
+  --modal-bg: #ffffff;
+  
+  --color-background-main: linear-gradient(135deg, #f5f7fa, #e4ecf7);
+  
+  /* ===== modal windows ===== */
+  --modal-color-background: #ffffff;
+  --modal-border-radius: 18px;
+  --modal-box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+  --modal-box-shadow-hover: 0 0 40px rgba(2, 19, 255, 0.418);
+  --modal-title-one-size: 26px;
+  --modal-border-radius-input: 10px;
+  --modal-color-text-border-input: #d4d4d4;
+  --modal-color-text-input: #9ca3af;
+  --modal-color-input-focus: 0 0 5px 1px #135cfabb;
+
+
+
+
+  --color-text-muted: #6b7280;
+
+  --color-bg-main: #f6f8fb;
+  --color-bg-card: #ffffff;
+  --color-bg-hover: #f1f5f9;
+
+  --color-border: #e5e7eb;
+  --color-danger: #ef4444;
+  --color-success: #22c55e;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* ===== SHADOWS ===== */
+  --shadow-sm: 0 4px 10px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.12);
+
+  /* ===== SPACING ===== */
+  --space-xs: 4px;
+
+
+  /* ===== HEADER ===== */
+  --header-height: 64px;
+}
